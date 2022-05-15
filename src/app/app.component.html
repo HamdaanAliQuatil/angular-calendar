@@ -5,15 +5,33 @@
     height: 100px;
     width: 500px;
   }
+
+  #_continue{
+    position: relative;
+    left: 900px;
+    top: 400px;
+  }
+
+  #_navigation{
+    position: relative;
+    padding-top: 10px;
+    margin-left: 120px;
+  }
+
+  #_reveal{
+    position: relative;
+    padding-top: 10px;
+    margin-left: 700px;
+  }
 </style>
 
 <div class ="_calendar">
 
   <div >
-  <mwl-calendar-month-view [viewDate]="viewDate"></mwl-calendar-month-view>
+  <mwl-calendar-month-view  [viewDate]="viewDate" [events]="events" (dayClicked)="dayClicked($event.day)"></mwl-calendar-month-view >
   </div>
 
-  <div class="row text-center">
+  <div class="row text-center" id="_navigation">
     <div class="col-md-4">
       <div class="btn-group">
         <div class="btn btn-primary" mwlCalendarPreviousView [view]="view" [(viewDate)]="viewDate">
@@ -29,6 +47,17 @@
     </div>
   </div>
 
+</div>
+
+<div id="_continue">
+  <button class="btn btn-primary"
+  (click)="toggleDisplay()">
+  {{isShow?'   X   ':'Continue'}}
+  </button>
+</div>
+
+<div *ngIf="isShow" id="_reveal">
+  {{date}}
 </div>
 
 <router-outlet></router-outlet>
